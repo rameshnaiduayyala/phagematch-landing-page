@@ -1,154 +1,240 @@
 import { motion } from "framer-motion";
-import { LineChart } from "lucide-react";
+import {
+  Cpu,
+  LineChart,
+  Network,
+  Shield,
+  Database,
+  Microscope,
+} from "lucide-react";
+import video1 from "../assets/6973-197914400.mp4";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full bg-[#01030A] text-white overflow-hidden flex items-center">
-      {/* ===== BACKGROUND ===== */}
-      <div
-        className="absolute inset-0 z-0"
+    <section className="relative min-h-screen w-full bg-[#01030A] text-white overflow-hidden flex items-center font-[Inter]">
+      {/* ===== ENHANCED BACKGROUND VIDEO ===== */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          className="w-full h-full object-cover opacity-30 scale-105" // slightly more visible (was 0.20)
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={video1} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#01030A]/80 via-[#01030A]/60 to-[#01030A]/80" />
+        {/* reduced overlay opacity from /90 and /70 → /80 and /60 */}
+      </div>
+
+      {/* ===== ADVANCED LIGHTING EFFECTS ===== */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle 800px at 20% 20%, rgba(0, 255, 255, 0.18) 0%, transparent 50%),
+              radial-gradient(circle 600px at 80% 80%, rgba(120, 100, 255, 0.15) 0%, transparent 50%)
+            `,
+          }}
+        />
+      </div>
+
+      {/* ===== ANIMATED GRID ===== */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-[0.04]" // slightly stronger grid visibility
         style={{
           backgroundImage: `
-            radial-gradient(circle 600px at 50% 150px, rgba(6,182,212,0.25), transparent 70%),
-            radial-gradient(circle 500px at 80% 80%, rgba(180,160,255,0.18), transparent 80%)
+            linear-gradient(to right, #00ffff 1px, transparent 1px),
+            linear-gradient(to bottom, #00ffff 1px, transparent 1px)
           `,
+          backgroundSize: "50px 50px",
         }}
-      />
-      <motion.div
-        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_25%_20%,rgba(0,255,255,0.08),transparent_70%),radial-gradient(circle_at_80%_75%,rgba(160,160,255,0.08),transparent_70%)]"
         animate={{
-          backgroundPosition: ["0% 0%", "100% 100%"],
+          backgroundPosition: ["0px 0px", "50px 50px"],
         }}
         transition={{
-          duration: 30,
+          duration: 20,
           repeat: Infinity,
-          repeatType: "reverse",
           ease: "linear",
         }}
       />
-      <div className="absolute inset-0 z-0 opacity-[0.03] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:90px_90px]" />
 
-      {/* ===== CONTENT ===== */}
-      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center px-6 py-16 md:py-20 lg:py-24">
-        {/* LEFT SIDE — TEXT */}
+      {/* ===== MAIN CONTENT ===== */}
+      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6 py-10 lg:py-16">
+        {/* ===== LEFT CONTENT ===== */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="flex flex-col"
+          transition={{ duration: 1 }}
+          className="flex flex-col space-y-8"
         >
-          {/* Tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-block mb-5 px-5 py-1.5 bg-white/5 rounded-full border border-white/10 text-sm font-medium tracking-wide uppercase text-cyan-300"
-          >
-            🔬 Presented at SBRT-2025 · IMS-BHU
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-5xl md:text-7xl font-bold leading-[1.15] mb-6 tracking-tight"
-          >
-            India’s Clinical{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-transparent bg-clip-text">
-              AMR Intelligence
-            </span>{" "}
-            &amp; Phage Therapy Platform
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-            className="text-lg md:text-xl text-cyan-100/90 mb-10 leading-relaxed max-w-xl font-light"
-          >
-            Transforming antimicrobial surveillance into real-time, data-driven
-            insights. Bridging hospitals, research labs, and national health
-            systems with AI-powered phage-pathogen intelligence.
-          </motion.p>
-
-          {/* Buttons */}
+          {/* BADGE */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-wrap gap-4"
+            transition={{ delay: 0.2 }}
+          >
+            <div className="inline-flex items-center px-5 py-2 bg-white/5 rounded-full border border-white/10 text-sm font-medium tracking-[0.15em] uppercase text-cyan-300 mb-6">
+              <Cpu className="w-4 h-4 mr-2" />
+              Presented at SBRT-2025 · IMS-BHU
+            </div>
+          </motion.div>
+
+          {/* MAIN HEADLINE */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="space-y-6"
+          >
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+              <span className="block">India’s Clinical</span>
+              <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-transparent bg-clip-text">
+                AMR Intelligence
+              </span>
+              <span className="block">& Phage Therapy Platform</span>
+            </h1>
+
+            <p className="text-lg lg:text-xl text-cyan-100/90 font-light leading-relaxed max-w-xl">
+              Merging clinical microbiology and AI to decode antimicrobial
+              resistance in real-time — connecting hospitals, researchers, and
+              health systems through precision phage-pathogen analytics.
+            </p>
+          </motion.div>
+
+          {/* KEY FEATURES */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4"
+          >
+            {[
+              { icon: Microscope, text: "Real-time AMR Analytics" },
+              { icon: Database, text: "Phage-Pathogen Database" },
+              { icon: Shield, text: "HIPAA Compliant" },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-center space-x-3 text-cyan-200/90"
+              >
+                <feature.icon className="w-5 h-5 text-cyan-400" />
+                <span className="text-sm font-medium">{feature.text}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CALL TO ACTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 pt-4"
           >
             <a
-              href="#contact-demo"
-              className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black font-semibold px-7 py-3 rounded-xl tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.25)] transition-all duration-300"
+              href="#demo"
+              className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black font-semibold px-7 py-3 rounded-xl tracking-wide shadow-[0_0_30px_rgba(6,182,212,0.25)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
             >
               Request Demo
             </a>
             <a
               href="#validation"
-              className="px-7 py-3 rounded-xl font-semibold border border-white/30 text-white hover:bg-white/10 transition-all duration-300"
+              className="px-7 py-3 rounded-xl font-semibold border border-white/30 text-white hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
               View Validation
             </a>
           </motion.div>
 
-          {/* Status line */}
+          {/* STATUS LINE */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-8 text-sm text-cyan-200/80 font-light tracking-wide"
+            transition={{ delay: 0.7 }}
+            className="mt-6 text-sm text-cyan-200/80 font-light tracking-wider"
           >
             <strong className="text-cyan-300">Phase:</strong> TRL 5–6 · MVP
-            validation in progress · Seeking pilot collaborations
+            validation ongoing · Seeking pilot collaborations
           </motion.div>
         </motion.div>
 
-        {/* RIGHT SIDE — Lucid Dashboard Logo Card */}
+        {/* ===== RIGHT SIDE - DASHBOARD PREVIEW ===== */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 1 }}
-          className="hidden md:flex justify-center items-center relative"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 0.85, x: 0 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="relative hidden lg:block"
         >
-          <motion.div
-            whileHover={{ rotateY: 8, rotateX: -6, scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 100, damping: 10 }}
-            className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-[0_0_50px_-10px_rgba(6,182,212,0.35)] h-[420px] w-full flex flex-col items-center justify-center"
-          >
-            {/* === Lucide Icon (instead of ChartNoAxesCombined) === */}
-            <motion.div
-              // animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="text-cyan-400/90"
-            >
-              <LineChart
-                size={120}
-                strokeWidth={1.5}
-                className="drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]"
-              />
-            </motion.div>
+          {/* DASHBOARD SKELETON CONTAINER */}
+          <div className="relative bg-white/5 border border-white/10 rounded-3xl backdrop-blur-md p-8 shadow-2xl shadow-cyan-500/10">
+            {/* SKELETON HEADER */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
+                <div className="h-4 bg-white/20 rounded w-32"></div>
+              </div>
+              <div className="flex space-x-2">
+                <div className="w-8 h-8 bg-white/10 rounded-lg"></div>
+                <div className="w-8 h-8 bg-white/10 rounded-lg"></div>
+                <div className="w-8 h-8 bg-white/10 rounded-lg"></div>
+              </div>
+            </div>
 
-            {/* Text Overlay */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 }}
-              className="relative z-10 text-center bg-white/10 backdrop-blur-md border border-white/10 px-8 py-4 rounded-xl inline-block mt-8 shadow-[0_0_25px_rgba(6,182,212,0.3)]"
-            >
-              <p className="text-cyan-100/90 text-sm uppercase tracking-widest font-semibold">
-                Dashboard Preview
-              </p>
-              <p className="text-white/70 text-xs mt-1 tracking-wide">
-                Coming Soon
-              </p>
-            </motion.div>
+            {/* SKELETON METRICS GRID */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {[1, 2, 3, 4].map((item) => (
+                <div
+                  key={item}
+                  className="bg-white/5 rounded-xl p-4 border border-white/10"
+                >
+                  <div className="h-4 bg-white/20 rounded w-3/4 mb-2"></div>
+                  <div className="h-6 bg-cyan-400/30 rounded w-1/2"></div>
+                </div>
+              ))}
+            </div>
 
-            {/* Ambient Glow */}
-            <div className="absolute -z-10 w-[250px] h-[250px] bg-gradient-to-r from-cyan-500/25 to-purple-500/25 rounded-full blur-3xl" />
-          </motion.div>
+            {/* SKELETON CHART AREA */}
+            <div className="bg-white/5 rounded-xl p-6 border border-white/10 mb-6">
+              <div className="h-4 bg-white/20 rounded w-1/2 mb-4"></div>
+              <div className="space-y-3">
+                <div className="h-3 bg-white/10 rounded w-full"></div>
+                <div className="h-3 bg-white/10 rounded w-5/6"></div>
+                <div className="h-3 bg-white/10 rounded w-4/6"></div>
+                <div className="h-3 bg-white/10 rounded w-3/4"></div>
+                <div className="h-3 bg-white/10 rounded w-5/6"></div>
+              </div>
+            </div>
+
+            {/* SKELETON DATA TABLE */}
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="h-4 bg-white/20 rounded w-2/3 mb-4"></div>
+              <div className="space-y-2">
+                {[1, 2, 3, 4].map((row) => (
+                  <div key={row} className="flex space-x-4">
+                    <div className="h-3 bg-white/10 rounded flex-1"></div>
+                    <div className="h-3 bg-white/10 rounded w-16"></div>
+                    <div className="h-3 bg-white/10 rounded w-12"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* COMING SOON OVERLAY */}
+            <div className="absolute inset-0 bg-black/50 rounded-3xl backdrop-blur-sm flex items-center justify-center">
+              <div className="text-center">
+                <LineChart className="w-12 h-12 text-cyan-300 mx-auto mb-3" />
+                <p className="text-xl text-cyan-200 font-light tracking-wide">
+                  Dashboard Preview
+                </p>
+                <p className="text-cyan-400/80 text-sm uppercase tracking-wider mt-1">
+                  Coming Soon
+                </p>
+              </div>
+            </div>
+
+            {/* FLOATING NETWORK ICON */}
+            <Network className="absolute -bottom-4 -right-4 w-12 h-12 text-cyan-400/30" />
+          </div>
         </motion.div>
       </div>
     </section>
