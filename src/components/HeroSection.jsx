@@ -60,7 +60,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* ===== MAIN CONTENT ===== */}
+      {/* ===== MAIN CONTENT1 ===== */}
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6 py-10 lg:py-16">
         {/* ===== LEFT CONTENT ===== */}
         <motion.div
