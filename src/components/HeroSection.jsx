@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { LineChart } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -8,28 +9,28 @@ export default function HeroSection() {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `
-            radial-gradient(circle 400px at 50% 100px, rgba(6,182,212,0.25), transparent 70%),
-            radial-gradient(circle 300px at 80% 80%, rgba(180,160,255,0.15), transparent 80%)
+            radial-gradient(circle 600px at 50% 150px, rgba(6,182,212,0.25), transparent 70%),
+            radial-gradient(circle 500px at 80% 80%, rgba(180,160,255,0.18), transparent 80%)
           `,
         }}
       />
       <motion.div
-        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_25%_20%,rgba(0,255,255,0.06),transparent_60%),radial-gradient(circle_at_80%_75%,rgba(160,160,255,0.06),transparent_70%)]"
+        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_25%_20%,rgba(0,255,255,0.08),transparent_70%),radial-gradient(circle_at_80%_75%,rgba(160,160,255,0.08),transparent_70%)]"
         animate={{
           backgroundPosition: ["0% 0%", "100% 100%"],
         }}
         transition={{
-          duration: 25,
+          duration: 30,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "linear",
         }}
       />
-      <div className="absolute inset-0 z-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
+      <div className="absolute inset-0 z-0 opacity-[0.03] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:90px_90px]" />
 
       {/* ===== CONTENT ===== */}
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center px-6 py-16 md:py-20 lg:py-24">
-        {/* LEFT SIDE */}
+        {/* LEFT SIDE — TEXT */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,34 +106,49 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT SIDE — Biotech Dashboard Mock */}
+        {/* RIGHT SIDE — Lucid Dashboard Logo Card */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="hidden md:flex justify-center items-center"
+          className="hidden md:flex justify-center items-center relative"
         >
-          <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 h-[380px] w-full flex items-center justify-center shadow-[0_0_45px_-10px_rgba(6,182,212,0.3)]">
-            <div className="absolute top-6 left-6 h-2 w-2 rounded-full bg-cyan-400/70 animate-pulse"></div>
-            <div className="text-center opacity-70">
-              <svg
-                className="w-24 h-24 mx-auto mb-5 text-cyan-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.3"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-              <p className="text-cyan-100/70 font-light tracking-wide">
-                Analytics dashboard prototype
+          <motion.div
+            whileHover={{ rotateY: 8, rotateX: -6, scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 100, damping: 10 }}
+            className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-[0_0_50px_-10px_rgba(6,182,212,0.35)] h-[420px] w-full flex flex-col items-center justify-center"
+          >
+            {/* === Lucide Icon (instead of ChartNoAxesCombined) === */}
+            <motion.div
+              // animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="text-cyan-400/90"
+            >
+              <LineChart
+                size={120}
+                strokeWidth={1.5}
+                className="drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]"
+              />
+            </motion.div>
+
+            {/* Text Overlay */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 }}
+              className="relative z-10 text-center bg-white/10 backdrop-blur-md border border-white/10 px-8 py-4 rounded-xl inline-block mt-8 shadow-[0_0_25px_rgba(6,182,212,0.3)]"
+            >
+              <p className="text-cyan-100/90 text-sm uppercase tracking-widest font-semibold">
+                Dashboard Preview
               </p>
-            </div>
-          </div>
+              <p className="text-white/70 text-xs mt-1 tracking-wide">
+                Coming Soon
+              </p>
+            </motion.div>
+
+            {/* Ambient Glow */}
+            <div className="absolute -z-10 w-[250px] h-[250px] bg-gradient-to-r from-cyan-500/25 to-purple-500/25 rounded-full blur-3xl" />
+          </motion.div>
         </motion.div>
       </div>
     </section>
